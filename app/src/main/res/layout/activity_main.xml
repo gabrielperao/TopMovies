@@ -13,64 +13,482 @@
         tools:context=".MainActivity">
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/movieBannerView19"
             android:layout_width="131dp"
             android:layout_height="195dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="80dp"
             android:visibility="invisible"
-            tools:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toBottomOf="@+id/imageView1"
-            app:srcCompat="@drawable/test_banner" />
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="131dp"
-            android:layout_height="195dp"
-            android:layout_marginTop="32dp"
-            android:visibility="invisible"
-            app:layout_constraintEnd_toStartOf="@+id/imageView3"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView0"
+            app:layout_constraintStart_toEndOf="@+id/movieBannerView18"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView17"
             app:srcCompat="@drawable/test_banner"
             tools:visibility="visible" />
 
         <ImageView
-            android:id="@+id/imageView1"
+            android:id="@+id/movieBannerView18"
             android:layout_width="131dp"
             android:layout_height="195dp"
+            android:layout_marginTop="80dp"
             android:visibility="invisible"
-            tools:visibility="visible"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/movieBannerView19"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/imageView0"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/test_banner" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView16"
+            app:srcCompat="@drawable/test_banner"
+            tools:visibility="visible" />
 
         <ImageView
-            android:id="@+id/imageView0"
+            android:id="@+id/movieBannerView17"
+            android:layout_width="131dp"
+            android:layout_height="195dp"
+            android:layout_marginTop="80dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/movieBannerView16"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView15"
+            app:srcCompat="@drawable/test_banner"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/movieBannerView16"
+            android:layout_width="131dp"
+            android:layout_height="195dp"
+            android:layout_marginTop="80dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@+id/movieBannerView17"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView14"
+            app:srcCompat="@drawable/test_banner"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/movieBannerView15"
+            android:layout_width="131dp"
+            android:layout_height="195dp"
+            android:layout_marginTop="80dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/movieBannerView14"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView13"
+            app:srcCompat="@drawable/test_banner"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/movieBannerView14"
+            android:layout_width="131dp"
+            android:layout_height="195dp"
+            android:layout_marginTop="80dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@+id/movieBannerView15"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView12"
+            app:srcCompat="@drawable/test_banner"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/movieBannerView13"
+            android:layout_width="131dp"
+            android:layout_height="195dp"
+            android:layout_marginTop="80dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/movieBannerView12"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView11"
+            app:srcCompat="@drawable/test_banner"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/movieBannerView12"
+            android:layout_width="131dp"
+            android:layout_height="195dp"
+            android:layout_marginTop="80dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@+id/movieBannerView13"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView10"
+            app:srcCompat="@drawable/test_banner"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/movieBannerView11"
+            android:layout_width="131dp"
+            android:layout_height="195dp"
+            android:layout_marginTop="80dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/movieBannerView10"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView9"
+            app:srcCompat="@drawable/test_banner"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/movieBannerView10"
+            android:layout_width="131dp"
+            android:layout_height="195dp"
+            android:layout_marginTop="80dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@+id/movieBannerView11"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView8"
+            app:srcCompat="@drawable/test_banner"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/movieBannerView9"
+            android:layout_width="131dp"
+            android:layout_height="195dp"
+            android:layout_marginTop="80dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/movieBannerView8"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView7"
+            app:srcCompat="@drawable/test_banner"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/movieBannerView8"
+            android:layout_width="131dp"
+            android:layout_height="195dp"
+            android:layout_marginTop="80dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@+id/movieBannerView9"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView6"
+            app:srcCompat="@drawable/test_banner"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/movieBannerView7"
+            android:layout_width="131dp"
+            android:layout_height="195dp"
+            android:layout_marginTop="80dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/movieBannerView6"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView5"
+            app:srcCompat="@drawable/test_banner"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/movieBannerView6"
+            android:layout_width="131dp"
+            android:layout_height="195dp"
+            android:layout_marginTop="80dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@+id/movieBannerView7"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView4"
+            app:srcCompat="@drawable/test_banner"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/movieBannerView5"
+            android:layout_width="131dp"
+            android:layout_height="195dp"
+            android:layout_marginTop="80dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/movieBannerView4"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView3"
+            app:srcCompat="@drawable/test_banner"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/movieBannerView4"
+            android:layout_width="131dp"
+            android:layout_height="195dp"
+            android:layout_marginTop="80dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@+id/movieBannerView5"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView2"
+            app:srcCompat="@drawable/test_banner"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/movieBannerView3"
+            android:layout_width="131dp"
+            android:layout_height="195dp"
+            android:layout_marginTop="80dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/movieBannerView2"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView1"
+            app:srcCompat="@drawable/test_banner"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/movieBannerView2"
+            android:layout_width="131dp"
+            android:layout_height="195dp"
+            android:layout_marginTop="80dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@+id/movieBannerView3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView0"
+            app:srcCompat="@drawable/test_banner"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/movieBannerView1"
             android:layout_width="131dp"
             android:layout_height="195dp"
             android:visibility="invisible"
-            tools:visibility="visible"
-            app:layout_constraintEnd_toStartOf="@+id/imageView1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/movieBannerView0"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/test_banner"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/movieBannerView0"
+            android:layout_width="131dp"
+            android:layout_height="195dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@+id/movieBannerView1"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/test_banner" />
+            app:srcCompat="@drawable/test_banner"
+            tools:visibility="visible" />
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/movieTitleView0"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="Button"
-            android:onClick="onClick"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="movieTitleView"
+            app:layout_constraintEnd_toEndOf="@+id/movieBannerView0"
+            app:layout_constraintStart_toStartOf="@+id/movieBannerView0"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView0" />
+
+        <TextView
+            android:id="@+id/movieTitleView1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="movieTitleView"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="@+id/movieBannerView1"
+            app:layout_constraintStart_toStartOf="@+id/movieBannerView1"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView1" />
+
+        <TextView
+            android:id="@+id/movieTitleView2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="movieTitleView"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="@+id/movieBannerView2"
+            app:layout_constraintStart_toStartOf="@+id/movieBannerView2"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView2" />
+
+        <TextView
+            android:id="@+id/movieTitleView3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="movieTitleView"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="@+id/movieBannerView3"
+            app:layout_constraintStart_toStartOf="@+id/movieBannerView3"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView3" />
+
+        <TextView
+            android:id="@+id/movieTitleView4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="movieTitleView"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="@+id/movieBannerView4"
+            app:layout_constraintStart_toStartOf="@+id/movieBannerView4"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView4" />
+
+        <TextView
+            android:id="@+id/movieTitleView5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="movieTitleView"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="@+id/movieBannerView5"
+            app:layout_constraintStart_toStartOf="@+id/movieBannerView5"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView5" />
+
+        <TextView
+            android:id="@+id/movieTitleView6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="movieTitleView"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="@+id/movieBannerView6"
+            app:layout_constraintStart_toStartOf="@+id/movieBannerView6"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView6" />
+
+        <TextView
+            android:id="@+id/movieTitleView7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Perdidos em Araraquara: o perigo agora é outro"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="@+id/movieBannerView7"
+            app:layout_constraintStart_toStartOf="@+id/movieBannerView7"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView7" />
+
+        <TextView
+            android:id="@+id/movieTitleView8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="O caçador de fantasmas do Velho oeste"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="@+id/movieBannerView8"
+            app:layout_constraintStart_toStartOf="@+id/movieBannerView8"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView8" />
+
+        <TextView
+            android:id="@+id/movieTitleView9"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Cars"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="@+id/movieBannerView9"
+            app:layout_constraintStart_toStartOf="@+id/movieBannerView9"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView9" />
+
+        <TextView
+            android:id="@+id/movieTitleView10"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="movieTitleView"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="@+id/movieBannerView10"
+            app:layout_constraintStart_toStartOf="@+id/movieBannerView10"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView10" />
+
+        <TextView
+            android:id="@+id/movieTitleView11"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="movieTitleView"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="@+id/movieBannerView11"
+            app:layout_constraintStart_toStartOf="@+id/movieBannerView11"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView11" />
+
+        <TextView
+            android:id="@+id/movieTitleView12"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="movieTitleView"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="@+id/movieBannerView12"
+            app:layout_constraintStart_toStartOf="@+id/movieBannerView12"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView12" />
+
+        <TextView
+            android:id="@+id/movieTitleView13"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="movieTitleView"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="@+id/movieBannerView13"
+            app:layout_constraintStart_toStartOf="@+id/movieBannerView13"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView13" />
+
+        <TextView
+            android:id="@+id/movieTitleView14"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="movieTitleView"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="@+id/movieBannerView14"
+            app:layout_constraintStart_toStartOf="@+id/movieBannerView14"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView14" />
+
+        <TextView
+            android:id="@+id/movieTitleView15"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="movieTitleView"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="@+id/movieBannerView15"
+            app:layout_constraintStart_toStartOf="@+id/movieBannerView15"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView15" />
+
+        <TextView
+            android:id="@+id/movieTitleView16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="movieTitleView"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="@+id/movieBannerView16"
+            app:layout_constraintStart_toStartOf="@+id/movieBannerView16"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView16" />
+
+        <TextView
+            android:id="@+id/movieTitleView17"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="movieTitleView"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="@+id/movieBannerView17"
+            app:layout_constraintStart_toStartOf="@+id/movieBannerView17"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView17" />
+
+        <TextView
+            android:id="@+id/movieTitleView18"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="movieTitleView"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="@+id/movieBannerView18"
+            app:layout_constraintStart_toStartOf="@+id/movieBannerView18"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView18" />
+
+        <TextView
+            android:id="@+id/movieTitleView19"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="movieTitleView"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="@+id/movieBannerView19"
+            app:layout_constraintStart_toStartOf="@+id/movieBannerView19"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView19" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
