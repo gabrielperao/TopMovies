@@ -5,24 +5,256 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MovieDescActivity">
+    tools:context=".view.MovieDescActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="40dp"
-        tools:context=".MovieDescActivity" >
+        android:padding="10dp"
+        tools:context=".view.MovieDescActivity">
 
         <ImageView
             android:id="@+id/backArrowImageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="1dp"
-            android:layout_marginLeft="1dp"
-            android:layout_marginTop="1dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_arrow_back_dp" />
+
+        <ImageView
+            android:id="@+id/movieBannerView"
+            android:layout_width="0dp"
+            android:layout_height="273dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/backArrowImageView"
+            app:srcCompat="@drawable/default_movie_poster" />
+
+        <TextView
+            android:id="@+id/movieTitleView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:text="Férias em Araraquara: O Perigo Agora é Outro"
+            android:textStyle="bold|italic"
+            android:textSize="42dp"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movieBannerView" />
+
+        <ImageView
+            android:id="@+id/starView"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toStartOf="@+id/voteAverageView"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movieTitleView"
+            app:srcCompat="@drawable/ic_star_24dp" />
+
+        <TextView
+            android:id="@+id/voteAverageView"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:text="8.4"
+            android:textSize="21dp"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@+id/starView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/starView"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/voteCountView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:gravity="center"
+            android:text="(2345)"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/voteAverageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/voteAverageView"
+            app:layout_constraintTop_toTopOf="@+id/voteAverageView" />
+
+        <TextView
+            android:id="@+id/movieOverviewLabelView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="16dp"
+            android:text="Overview:"
+            android:textSize="21dp"
+            android:textStyle="bold|italic"
+            android:gravity="left"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/starView" />
+
+        <TextView
+            android:id="@+id/movieOverviewContentView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris semper elementum eros a ultricies. Aliquam vulputate ipsum quis libero bibendum, luctus fringilla est venenatis. Ut id lacus nec leo gravida pulvinar. Pellentesque maximus metus et nisi porta tincidunt ac non leo. Class aptent taciti sociosqu ad litora torquent per conubia."
+            android:textSize="18dp"
+            android:gravity="left"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movieOverviewLabelView" />
+
+        <TextView
+            android:id="@+id/movieReleaseYearLabelView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="18dp"
+            android:gravity="left"
+            android:text="Release Year"
+            android:textSize="21dp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movieOverviewContentView" />
+
+        <TextView
+            android:id="@+id/movieReleaseYearContentView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:text="2011"
+            android:textSize="18dp"
+            android:gravity="left"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movieReleaseYearLabelView" />
+
+        <TextView
+            android:id="@+id/movieGenresLabelView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="18dp"
+            android:text="Genres"
+            android:textSize="21dp"
+            android:textStyle="bold|italic"
+            android:gravity="left"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movieReleaseYearContentView" />
+
+        <TextView
+            android:id="@+id/movieGenresContentView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:text="Drama, Suspense, Crime"
+            android:textSize="18dp"
+            android:gravity="left"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movieGenresLabelView" />
+
+        <TextView
+            android:id="@+id/movieLanguagesLabelView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="18dp"
+            android:text="Languages"
+            android:textSize="21dp"
+            android:textStyle="bold|italic"
+            android:gravity="left"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movieGenresContentView" />
+
+        <TextView
+            android:id="@+id/movieLanguagesContentView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:text="English, Italiano, Latin"
+            android:textSize="18dp"
+            android:gravity="left"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movieLanguagesLabelView" />
+
+        <TextView
+            android:id="@+id/movieRuntimeLabelView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="18dp"
+            android:text="Runtime"
+            android:textSize="21dp"
+            android:textStyle="bold|italic"
+            android:gravity="left"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movieLanguagesContentView" />
+
+        <TextView
+            android:id="@+id/movieRuntimeContentView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:text="1h50min"
+            android:textSize="18dp"
+            android:gravity="left"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movieRuntimeLabelView" />
+
+        <TextView
+            android:id="@+id/noConnectionMessageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="You are not connected to the internet!"
+            android:textSize="21dp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/noConnectionImageView"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/noConnectionImageView"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="200dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_signal_wifi_off_24dp"
+            tools:visibility="visible"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
