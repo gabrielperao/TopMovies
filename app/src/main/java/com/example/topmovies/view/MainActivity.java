@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.ViewGroup;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Intent;
@@ -21,26 +22,21 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    protected final int N_MOVIES = 20;
-    protected final String REQUEST_FAIL_MSG = "Data download failed";
-
-    protected final String BASE_URL = "https://api.themoviedb.org/3/movie/";
-    protected final String BASE_IMG_PATH = "https://image.tmdb.org/t/p/original";
-    protected final String TOKEN = "beb00a4c8c6361b20da92f6abae277d0";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
 
-        if (!MovieController.checkConnection(getApplicationContext())) {
+        if (!MovieController.hasInternetConnection(getApplicationContext())) {
             displayNoConnectionMessage();
             return;
         }
 
+        setVisibility("progressBar", View.VISIBLE);
+
         AsyncLoadMoviesTask loadMoviesTask = new AsyncLoadMoviesTask();
-        loadMoviesTask.execute(BASE_URL + "top_rated?api_key=" + TOKEN);
+        loadMoviesTask.execute(MovieController.BASE_URL + "top_rated?api_key=" + MovieController.TOKEN);
     }
 
     class AsyncLoadMoviesTask extends AsyncTask<String, String, String>{
@@ -54,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String response) {
             super.onPostExecute(response);
 
+            setVisibility("progressBar", View.INVISIBLE);
+
             if (response == null) {
                 displayNoConnectionMessage();
                 return;
@@ -62,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             List<MovieModel> movies = MovieController.getTopRatedMovies(response);
             if (movies == null) {
                 displayNoConnectionMessage();
-                Toast.makeText(getApplicationContext(), REQUEST_FAIL_MSG, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), MovieController.REQUEST_FAIL_MSG, Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -78,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         final ImageView imageView = findViewById(indexId);
 
         imageView.setVisibility(View.VISIBLE);
-        Picasso.get().load(BASE_IMG_PATH + movie.getPosterPath()).into(imageView, new Callback() {
+        Picasso.get().load(MovieController.BASE_IMG_PATH + movie.getPosterPath()).into(imageView, new Callback() {
             @Override
             public void onSuccess() {
                 // pass
@@ -100,28 +98,32 @@ public class MainActivity extends AppCompatActivity {
         });
 
         indexId = getResources().getIdentifier("movieTitleView" + movie.getIndexId(), "id", getPackageName());
-        final TextView textView = findViewById(indexId);
-
+        TextView textView = findViewById(indexId);
         textView.setText(movie.getTitle());
         textView.setVisibility(View.VISIBLE);
     }
 
     public void displayNoConnectionMessage() {
-        for (int i = 0 ; i < N_MOVIES; i++) {
-            int imageId = getResources().getIdentifier("moviePosterView" + i, "id", getPackageName());
-            int textId = getResources().getIdentifier("movieTitleView" + i, "id", getPackageName());
-            final ImageView imageView = findViewById(imageId);
-            final TextView textView = findViewById(textId);
-            ((ViewGroup) imageView.getParent()).removeView(imageView);
-            ((ViewGroup) textView.getParent()).removeView(textView);
+        for (int i = 0 ; i < MovieController.N_MOVIES; i++) {
+            removeView("moviePosterView" + i);
+            removeView("movieTitleView" + i);
         }
 
-        int imageId = getResources().getIdentifier("noConnectionImageView", "id", getPackageName());
-        int textId = getResources().getIdentifier("noConnectionMessageView", "id", getPackageName());
-        ImageView imageView = findViewById(imageId);
-        TextView textView = findViewById(textId);
+        setVisibility("noConnectionImageView", View.VISIBLE);
+        setVisibility("noConnectionTextView", View.VISIBLE);
+    }
 
-        imageView.setVisibility(View.VISIBLE);
-        textView.setVisibility(View.VISIBLE);
+    private void removeView(String idStr) {
+        setContentView(R.layout.activity_main);
+        int viewId = getResources().getIdentifier(idStr, "id", getPackageName());
+        View view = findViewById(viewId);
+        ((ViewGroup) view.getParent()).removeView(view);
+    }
+
+    private void setVisibility(String idStr, int visibility) {
+        int viewId = getResources().getIdentifier(idStr, "id", getPackageName());
+        View view = findViewById(viewId);
+
+        view.setVisibility(visibility);
     }
 }

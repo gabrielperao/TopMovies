@@ -1,10 +1,10 @@
 package com.example.topmovies.api;
 
+import com.example.topmovies.model.MovieModel;
+
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-
-import com.example.topmovies.model.MovieModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,6 +25,13 @@ import java.util.List;
 import java.util.Locale;
 
 public class MovieController {
+
+    public static final int N_MOVIES = 20;
+    public static final String REQUEST_FAIL_MSG = "Data download failed";
+
+    public static final String BASE_URL = "https://api.themoviedb.org/3/movie/";
+    public static final String BASE_IMG_PATH = "https://image.tmdb.org/t/p/original/";
+    public static final String TOKEN = "beb00a4c8c6361b20da92f6abae277d0";
 
     public static String getResponse(String stringUrl) {
         InputStream inputStream;
@@ -84,9 +91,16 @@ public class MovieController {
             JSONObject obj = new JSONObject(response);
             movieModel.setTitle(obj.getString("title"));
             movieModel.setOverview(obj.getString("overview"));
-            movieModel.setRuntime(Integer.valueOf(obj.getString("runtime")));
+            int runtime = Integer.valueOf(obj.getString("runtime"));
+            movieModel.setRuntime(getRuntimeStrFormat(runtime));
             String year = getYearFromDateStr(obj.getString("release_date"));
             movieModel.setReleaseYear(year);
+            movieModel.setBackdropPath(obj.getString("backdrop_path"));
+
+            float average = Float.valueOf(obj.getString("vote_average"));
+            movieModel.setVoteAverage(round(average));
+            movieModel.setVoteCount(Integer.valueOf(obj.getString("vote_count")));
+
 
             List<String> genresList = new ArrayList<>();
             JSONArray genresJsonArray = new JSONArray(obj.getString("genres"));
@@ -112,7 +126,7 @@ public class MovieController {
         return movieModel;
     }
 
-    public static boolean checkConnection(Context context) {
+    public static boolean hasInternetConnection(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         if (activeNetwork == null) return false;
@@ -132,5 +146,15 @@ public class MovieController {
         } catch (ParseException e) {
             return "-";
         }
+    }
+
+    private static String getRuntimeStrFormat(int runtime) {
+        int hours = runtime / 60;
+        int minutes = runtime % 60;
+        return String.valueOf(hours) + "h" + String.valueOf(minutes) + "min";
+    }
+
+    private static float round(float x) {
+        return (float)((int)x * 10 + (int)(x * 10) % 10) / 10;
     }
 }

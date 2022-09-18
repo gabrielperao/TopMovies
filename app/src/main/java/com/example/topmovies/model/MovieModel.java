@@ -9,11 +9,11 @@ public class MovieModel {
     private String posterPath;
     private String backdropPath;
     private String releaseYear;
+    private String runtime;
     private List<String> genres;
     private List<String> languages;
     private float voteAverage;
     private int voteCount;
-    private int runtime;
     private int indexId;
     private int movieId;
 
@@ -89,11 +89,11 @@ public class MovieModel {
         this.voteCount = voteCount;
     }
 
-    public int getRuntime() {
+    public String getRuntime() {
         return runtime;
     }
 
-    public void setRuntime(int runtime) {
+    public void setRuntime(String runtime) {
         this.runtime = runtime;
     }
 
