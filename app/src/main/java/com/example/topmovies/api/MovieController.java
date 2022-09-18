@@ -1,6 +1,7 @@
 package com.example.topmovies.api;
 
 import com.example.topmovies.model.MovieModel;
+import com.example.topmovies.util.Util;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -92,13 +93,13 @@ public class MovieController {
             movieModel.setTitle(obj.getString("title"));
             movieModel.setOverview(obj.getString("overview"));
             int runtime = Integer.valueOf(obj.getString("runtime"));
-            movieModel.setRuntime(getRuntimeStrFormat(runtime));
-            String year = getYearFromDateStr(obj.getString("release_date"));
+            movieModel.setRuntime(Util.getRuntimeStrFormat(runtime));
+            String year = Util.getYearFromDateStr(obj.getString("release_date"));
             movieModel.setReleaseYear(year);
             movieModel.setBackdropPath(obj.getString("backdrop_path"));
 
             float average = Float.valueOf(obj.getString("vote_average"));
-            movieModel.setVoteAverage(round(average));
+            movieModel.setVoteAverage(Util.round(average));
             movieModel.setVoteCount(Integer.valueOf(obj.getString("vote_count")));
 
 
@@ -124,37 +125,5 @@ public class MovieController {
         }
 
         return movieModel;
-    }
-
-    public static boolean hasInternetConnection(Context context) {
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        if (activeNetwork == null) return false;
-        int type = activeNetwork.getType();
-        return (type == ConnectivityManager.TYPE_WIFI || type == ConnectivityManager.TYPE_MOBILE);
-    }
-
-    private static String getYearFromDateStr(String dateStr) {
-        try {
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
-            Date date = formatter.parse(dateStr);
-            if (date == null) return "-";
-
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(date);
-            return String.valueOf(calendar.get(Calendar.YEAR));
-        } catch (ParseException e) {
-            return "-";
-        }
-    }
-
-    private static String getRuntimeStrFormat(int runtime) {
-        int hours = runtime / 60;
-        int minutes = runtime % 60;
-        return String.valueOf(hours) + "h" + String.valueOf(minutes) + "min";
-    }
-
-    private static float round(float x) {
-        return (float)((int)x * 10 + (int)(x * 10) % 10) / 10;
     }
 }

@@ -2,9 +2,10 @@ package com.example.topmovies.view;
 
 import com.example.topmovies.api.MovieController;
 import com.example.topmovies.model.MovieModel;
+import com.example.topmovies.util.Util;
 import com.example.topmovies.R;
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Callback;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,6 +26,7 @@ public class MovieDescActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_desc);
 
+
         ImageView backArrowImageView = findViewById(R.id.backArrowImageView);
         backArrowImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,11 +35,12 @@ public class MovieDescActivity extends AppCompatActivity {
             }
         });
 
-        if (!MovieController.hasInternetConnection(getApplicationContext())) {
+        if (!Util.hasInternetConnection(getApplicationContext())) {
             displayNoConnectionMessage();
             return;
         }
 
+        setVisibility("progressBar", View.VISIBLE);
 
         Bundle b = getIntent().getExtras();
         int id = b.getInt("id");
@@ -57,6 +60,8 @@ public class MovieDescActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String response) {
             super.onPostExecute(response);
+
+            setVisibility("progressBar", View.INVISIBLE);
 
             if (response == null) {
                 displayNoConnectionMessage();

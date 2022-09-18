@@ -1,8 +1,9 @@
 package com.example.topmovies.view;
 
-import com.example.topmovies.R;
-import com.example.topmovies.model.MovieModel;
 import com.example.topmovies.api.MovieController;
+import com.example.topmovies.model.MovieModel;
+import com.example.topmovies.util.Util;
+import com.example.topmovies.R;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Callback;
 
@@ -10,10 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.ViewGroup;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Intent;
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        if (!MovieController.hasInternetConnection(getApplicationContext())) {
+        if (!Util.hasInternetConnection(getApplicationContext())) {
             displayNoConnectionMessage();
             return;
         }
