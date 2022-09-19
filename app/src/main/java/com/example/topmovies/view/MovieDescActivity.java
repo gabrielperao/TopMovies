@@ -9,7 +9,6 @@ import com.squareup.picasso.Callback;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Movie;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +20,25 @@ import java.util.List;
 
 
 public class MovieDescActivity extends AppCompatActivity {
+
+    private String[] widgetIds = {
+            "movieTitleView",
+            "movieVoteAverageView",
+            "movieVoteCountView",
+            "movieOverviewLabelView",
+            "movieOverviewContentView",
+            "movieReleaseYearLabelView",
+            "movieReleaseYearContentView",
+            "movieGenresLabelView",
+            "movieGenresContentView",
+            "movieLanguagesLabelView",
+            "movieLanguagesContentView",
+            "movieRuntimeLabelView",
+            "movieRuntimeContentView",
+            "backArrowImageView",
+            "movieBannerView",
+            "starView"
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +61,8 @@ public class MovieDescActivity extends AppCompatActivity {
 
         setVisibility("progressBar", View.VISIBLE);
 
+        // Getting movie id passed as 'parameter' to the current activity
+        // It will be used to send a request to the API and get the movie's detailed information
         Bundle b = getIntent().getExtras();
         int id = b.getInt("id");
 
@@ -58,13 +78,13 @@ public class MovieDescActivity extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(String response) {
-            super.onPostExecute(response);
+        protected void onPostExecute(String jsonResponse) {
+            super.onPostExecute(jsonResponse);
 
             setVisibility("progressBar", View.INVISIBLE);
 
             MovieModel movie;
-            if (response == null || (movie = MovieController.getMovie(response)) == null) {
+            if (jsonResponse == null || (movie = MovieController.getMovie(jsonResponse)) == null) {
                 displayNoConnectionMessage(true);
                 return;
             }
@@ -74,25 +94,6 @@ public class MovieDescActivity extends AppCompatActivity {
     }
 
     private void displayNoConnectionMessage(boolean requestFail) {
-
-        String[] widgetIds = {
-                "movieTitleView",
-                "voteAverageView",
-                "voteCountView",
-                "movieOverviewLabelView",
-                "movieOverviewContentView",
-                "movieReleaseYearLabelView",
-                "movieReleaseYearContentView",
-                "movieGenresLabelView",
-                "movieGenresContentView",
-                "movieLanguagesLabelView",
-                "movieLanguagesContentView",
-                "movieRuntimeLabelView",
-                "movieRuntimeContentView",
-                "backArrowImageView",
-                "movieBannerView",
-                "starView"
-        };
 
         int id;
         for (String idStr : widgetIds) {
@@ -121,27 +122,10 @@ public class MovieDescActivity extends AppCompatActivity {
         setTextForTextView("movieGenresContentView", movie.getGenres());
         setTextForTextView("movieLanguagesContentView", movie.getLanguages());
         setTextForTextView("movieRuntimeContentView", movie.getRuntime());
-        setTextForTextView("voteAverageView", String.valueOf(movie.getVoteAverage()));
-        setTextForTextView("voteCountView", "(" + movie.getVoteCount() + ")");
+        setTextForTextView("movieVoteAverageView", String.valueOf(movie.getVoteAverage()));
+        setTextForTextView("movieVoteCountView", "(" + movie.getVoteCount() + ")");
 
-        String[] idViews = {
-            "movieTitleView",
-            "movieOverviewLabelView",
-            "movieOverviewContentView",
-            "movieReleaseYearLabelView",
-            "movieReleaseYearContentView",
-            "movieGenresLabelView",
-            "movieGenresContentView",
-            "movieLanguagesLabelView",
-            "movieLanguagesContentView",
-            "movieRuntimeLabelView",
-            "movieRuntimeContentView",
-            "voteAverageView",
-            "voteCountView",
-            "starView"
-        };
-
-        for (String id : idViews) {
+        for (String id : widgetIds) {
             setVisibility(id, View.VISIBLE);
         }
     }
@@ -154,11 +138,12 @@ public class MovieDescActivity extends AppCompatActivity {
         Picasso.get().load(path).into(imageView, new Callback() {
             @Override
             public void onSuccess() {
-                // pass
+                // No further action needed
             }
 
             @Override
             public void onError(Exception e) {
+                e.printStackTrace();
                 imageView.setImageResource(R.drawable.default_movie_poster);
             }
         });

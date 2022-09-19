@@ -20,12 +20,12 @@ public class MovieController {
 
     public static final int N_MOVIES = 20;
     public static final String REQUEST_FAIL_MSG = "Something didn't work, check your wi-fi connection!";
-
     public static final String BASE_URL = "https://desafio-mobile.nyc3.digitaloceanspaces.com/movies-v2";
 
     public static String getResponse(String... strings) {
         String stringUrl = BASE_URL;
         if (strings != null) {
+            // This method can be called with an id to be used as parameter in the API request
             if (strings.length > 0) {
                 stringUrl = stringUrl + "/" + strings[0];
             }
@@ -55,11 +55,11 @@ public class MovieController {
         return buffer.toString();
     }
 
-    public static List<MovieModel> getTopRatedMovies(String response) {
+    public static List<MovieModel> getTopRatedMovies(String jsonResponse) {
         List<MovieModel> movieList = new ArrayList<>();
 
         try {
-            JSONArray jsonArray = new JSONArray(response);
+            JSONArray jsonArray = new JSONArray(jsonResponse);
 
             int lenJsonArray = jsonArray.length();
             for (int i = 0; i < lenJsonArray; i++) {
@@ -79,11 +79,11 @@ public class MovieController {
         return movieList;
     }
 
-    public static MovieModel getMovie(String response) {
+    public static MovieModel getMovie(String jsonResponse) {
         MovieModel movieModel = new MovieModel();
 
         try {
-            JSONObject obj = new JSONObject(response);
+            JSONObject obj = new JSONObject(jsonResponse);
 
             movieModel.setTitle(obj.getString("title"));
 

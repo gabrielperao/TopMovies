@@ -61,7 +61,7 @@
             android:layout_height="36dp"
             android:layout_marginTop="5dp"
             android:visibility="invisible"
-            app:layout_constraintEnd_toStartOf="@+id/voteAverageView"
+            app:layout_constraintEnd_toStartOf="@+id/movieVoteAverageView"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/movieTitleView"
@@ -69,7 +69,7 @@
             tools:visibility="visible" />
 
         <TextView
-            android:id="@+id/voteAverageView"
+            android:id="@+id/movieVoteAverageView"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:text=""
@@ -87,7 +87,7 @@
             tools:visibility="visible" />
 
         <TextView
-            android:id="@+id/voteCountView"
+            android:id="@+id/movieVoteCountView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
@@ -98,11 +98,11 @@
             android:textColor="@color/white"
             android:visibility="invisible"
             android:contentDescription="@string/desc_vote_count"
-            app:layout_constraintBottom_toBottomOf="@+id/voteAverageView"
+            app:layout_constraintBottom_toBottomOf="@+id/movieVoteAverageView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/voteAverageView"
-            app:layout_constraintTop_toTopOf="@+id/voteAverageView"
+            app:layout_constraintStart_toEndOf="@+id/movieVoteAverageView"
+            app:layout_constraintTop_toTopOf="@+id/movieVoteAverageView"
             tools:visibility="visible" />
 
         <TextView

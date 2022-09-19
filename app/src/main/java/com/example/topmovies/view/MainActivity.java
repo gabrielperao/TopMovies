@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         if (Util.hasNoConnection(getApplicationContext())) {
             displayNoConnectionMessage(false);
             return;
@@ -46,17 +45,17 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(String response) {
-            super.onPostExecute(response);
+        protected void onPostExecute(String jsonResponse) {
+            super.onPostExecute(jsonResponse);
 
             setVisibility("progressBar", View.INVISIBLE);
 
-            if (response == null) {
+            if (jsonResponse == null) {
                 displayNoConnectionMessage(true);
                 return;
             }
 
-            List<MovieModel> movies = MovieController.getTopRatedMovies(response);
+            List<MovieModel> movies = MovieController.getTopRatedMovies(jsonResponse);
             if (movies == null) {
                 displayNoConnectionMessage(true);
                 Toast.makeText(getApplicationContext(), MovieController.REQUEST_FAIL_MSG, Toast.LENGTH_SHORT).show();
@@ -71,24 +70,24 @@ public class MainActivity extends AppCompatActivity {
 
     protected void updateViewWithMovieInfo(MovieModel movie) {
         final int movieId = movie.getMovieId();
-        int indexId = getResources().getIdentifier("moviePosterView" + movie.getIndexId(), "id", getPackageName());
-        final ImageView imageView = findViewById(indexId);
+        int viewId = getResources().getIdentifier("moviePosterView" + movie.getIndexId(), "id", getPackageName());
+        final ImageView moviePosterView = findViewById(viewId);
 
-        imageView.setContentDescription(movie.getTitle());
-        imageView.setVisibility(View.VISIBLE);
-        Picasso.get().load(movie.getPosterPath()).into(imageView, new Callback() {
+        moviePosterView.setContentDescription(movie.getTitle());
+        moviePosterView.setVisibility(View.VISIBLE);
+        Picasso.get().load(movie.getPosterPath()).into(moviePosterView, new Callback() {
             @Override
             public void onSuccess() {
-                // pass
+                // No further action needed
             }
 
             @Override
             public void onError(Exception e) {
-                imageView.setImageResource(R.drawable.default_movie_poster);
+                moviePosterView.setImageResource(R.drawable.default_movie_poster);
             }
         });
 
-        imageView.setOnClickListener(new View.OnClickListener(){
+        moviePosterView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(MainActivity.this, MovieDescActivity.class);
@@ -97,11 +96,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        indexId = getResources().getIdentifier("movieTitleView" + movie.getIndexId(), "id", getPackageName());
-        TextView textView = findViewById(indexId);
-        textView.setText(movie.getTitle());
-        textView.setContentDescription(movie.getTitle());
-        textView.setVisibility(View.VISIBLE);
+        viewId = getResources().getIdentifier("movieTitleView" + movie.getIndexId(), "id", getPackageName());
+        TextView movieTitleView = findViewById(viewId);
+        movieTitleView.setText(movie.getTitle());
+        movieTitleView.setContentDescription(movie.getTitle());
+        movieTitleView.setVisibility(View.VISIBLE);
     }
 
     public void displayNoConnectionMessage(boolean requestFail) {
