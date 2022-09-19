@@ -9,6 +9,7 @@ import com.squareup.picasso.Callback;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Movie;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -35,8 +36,8 @@ public class MovieDescActivity extends AppCompatActivity {
             }
         });
 
-        if (!Util.hasInternetConnection(getApplicationContext())) {
-            displayNoConnectionMessage();
+        if (Util.hasNoConnection(getApplicationContext())) {
+            displayNoConnectionMessage(false);
             return;
         }
 
@@ -44,10 +45,9 @@ public class MovieDescActivity extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
         int id = b.getInt("id");
-        String path = MovieController.BASE_URL + id + "?api_key=" + MovieController.TOKEN;
 
         AsyncLoadMovieInfoTask loadMovieInfoTask = new AsyncLoadMovieInfoTask();
-        loadMovieInfoTask.execute(path);
+        loadMovieInfoTask.execute(String.valueOf(id));
     }
 
     class AsyncLoadMovieInfoTask extends AsyncTask<String, String, String>{
@@ -63,17 +63,17 @@ public class MovieDescActivity extends AppCompatActivity {
 
             setVisibility("progressBar", View.INVISIBLE);
 
-            if (response == null) {
-                displayNoConnectionMessage();
+            MovieModel movie;
+            if (response == null || (movie = MovieController.getMovie(response)) == null) {
+                displayNoConnectionMessage(true);
                 return;
             }
 
-            MovieModel movie = MovieController.getMovie(response);
             updateViewsWithMovieInfo(movie);
         }
     }
 
-    private void displayNoConnectionMessage() {
+    private void displayNoConnectionMessage(boolean requestFail) {
 
         String[] widgetIds = {
                 "movieTitleView",
@@ -99,12 +99,14 @@ public class MovieDescActivity extends AppCompatActivity {
             id = getResources().getIdentifier(idStr, "id", getPackageName());
             View view = findViewById(id);
             if (view == null) {
-                System.out.println(idStr);
                 continue;
             }
             ((ViewGroup) view.getParent()).removeView(view);
         }
 
+        if (requestFail) {
+            setTextForTextView("noConnectionView", MovieController.REQUEST_FAIL_MSG);
+        }
         setVisibility("noConnectionImageView", View.VISIBLE);
         setVisibility("noConnectionTextView", View.VISIBLE);
     }
@@ -122,20 +124,26 @@ public class MovieDescActivity extends AppCompatActivity {
         setTextForTextView("voteAverageView", String.valueOf(movie.getVoteAverage()));
         setTextForTextView("voteCountView", "(" + movie.getVoteCount() + ")");
 
-        setVisibility("movieTitleView", View.VISIBLE);
-        setVisibility("movieOverviewLabelView", View.VISIBLE);
-        setVisibility("movieOverviewContentView", View.VISIBLE);
-        setVisibility("movieReleaseYearLabelView", View.VISIBLE);
-        setVisibility("movieReleaseYearContentView", View.VISIBLE);
-        setVisibility("movieGenresLabelView", View.VISIBLE);
-        setVisibility("movieGenresContentView", View.VISIBLE);
-        setVisibility("movieLanguagesLabelView", View.VISIBLE);
-        setVisibility("movieLanguagesContentView", View.VISIBLE);
-        setVisibility("movieRuntimeLabelView", View.VISIBLE);
-        setVisibility("movieRuntimeContentView", View.VISIBLE);
-        setVisibility("voteAverageView", View.VISIBLE);
-        setVisibility("voteCountView", View.VISIBLE);
-        setVisibility("starView", View.VISIBLE);
+        String[] idViews = {
+            "movieTitleView",
+            "movieOverviewLabelView",
+            "movieOverviewContentView",
+            "movieReleaseYearLabelView",
+            "movieReleaseYearContentView",
+            "movieGenresLabelView",
+            "movieGenresContentView",
+            "movieLanguagesLabelView",
+            "movieLanguagesContentView",
+            "movieRuntimeLabelView",
+            "movieRuntimeContentView",
+            "voteAverageView",
+            "voteCountView",
+            "starView"
+        };
+
+        for (String id : idViews) {
+            setVisibility(id, View.VISIBLE);
+        }
     }
 
     private void setPathForImageView(String path, String idStr) {
@@ -143,7 +151,7 @@ public class MovieDescActivity extends AppCompatActivity {
         final ImageView imageView = findViewById(viewId);
 
         imageView.setVisibility(View.VISIBLE);
-        Picasso.get().load(MovieController.BASE_IMG_PATH + path).into(imageView, new Callback() {
+        Picasso.get().load(path).into(imageView, new Callback() {
             @Override
             public void onSuccess() {
                 // pass
@@ -166,15 +174,15 @@ public class MovieDescActivity extends AppCompatActivity {
         int viewId = getResources().getIdentifier(idStr, "id", getPackageName());
         TextView textView = findViewById(viewId);
 
-        String text = "";
+        StringBuilder strBuilder = new StringBuilder();
         int nElements = list.size();
         for (int i = 0; i < nElements; i++) {
-            text += list.get(i);
+            strBuilder.append(list.get(i));
             if (i < (nElements - 1)) {
-                text += ", ";
+                strBuilder.append(", ");
             }
         }
-        textView.setText(text);
+        textView.setText(strBuilder.toString());
     }
 
     private void setVisibility(String idStr, int visibility) {

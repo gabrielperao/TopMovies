@@ -3,10 +3,6 @@ package com.example.topmovies.api;
 import com.example.topmovies.model.MovieModel;
 import com.example.topmovies.util.Util;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,24 +13,24 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class MovieController {
 
     public static final int N_MOVIES = 20;
-    public static final String REQUEST_FAIL_MSG = "Data download failed";
+    public static final String REQUEST_FAIL_MSG = "Something didn't work, check your wi-fi connection!";
 
-    public static final String BASE_URL = "https://api.themoviedb.org/3/movie/";
-    public static final String BASE_IMG_PATH = "https://image.tmdb.org/t/p/original/";
-    public static final String TOKEN = "beb00a4c8c6361b20da92f6abae277d0";
+    public static final String BASE_URL = "https://desafio-mobile.nyc3.digitaloceanspaces.com/movies-v2";
 
-    public static String getResponse(String stringUrl) {
+    public static String getResponse(String... strings) {
+        String stringUrl = BASE_URL;
+        if (strings != null) {
+            if (strings.length > 0) {
+                stringUrl = stringUrl + "/" + strings[0];
+            }
+        }
+
         InputStream inputStream;
         InputStreamReader inputStreamReader;
         BufferedReader reader;
@@ -63,9 +59,7 @@ public class MovieController {
         List<MovieModel> movieList = new ArrayList<>();
 
         try {
-            JSONObject responseObject = new JSONObject(response);
-            String arrayStr = responseObject.getString("results");
-            JSONArray jsonArray = new JSONArray(arrayStr);
+            JSONArray jsonArray = new JSONArray(response);
 
             int lenJsonArray = jsonArray.length();
             for (int i = 0; i < lenJsonArray; i++) {
@@ -74,7 +68,7 @@ public class MovieController {
                 movieModel.setIndexId(i);
                 movieModel.setMovieId(Integer.valueOf(obj.getString("id")));
                 movieModel.setTitle(obj.getString("title"));
-                movieModel.setPosterPath(obj.getString("poster_path"));
+                movieModel.setPosterPath(obj.getString("poster_url"));
                 movieList.add(movieModel);
             }
         } catch (JSONException e) {
@@ -90,24 +84,29 @@ public class MovieController {
 
         try {
             JSONObject obj = new JSONObject(response);
+
             movieModel.setTitle(obj.getString("title"));
+
             movieModel.setOverview(obj.getString("overview"));
+
             int runtime = Integer.valueOf(obj.getString("runtime"));
             movieModel.setRuntime(Util.getRuntimeStrFormat(runtime));
+
             String year = Util.getYearFromDateStr(obj.getString("release_date"));
             movieModel.setReleaseYear(year);
-            movieModel.setBackdropPath(obj.getString("backdrop_path"));
+
+            movieModel.setBackdropPath(obj.getString("backdrop_url"));
 
             float average = Float.valueOf(obj.getString("vote_average"));
             movieModel.setVoteAverage(Util.round(average));
+
             movieModel.setVoteCount(Integer.valueOf(obj.getString("vote_count")));
 
 
             List<String> genresList = new ArrayList<>();
             JSONArray genresJsonArray = new JSONArray(obj.getString("genres"));
             for (int i = 0; i < genresJsonArray.length(); i++) {
-                JSONObject genreObj = new JSONObject(genresJsonArray.get(i).toString());
-                genresList.add(genreObj.getString("name"));
+                genresList.add(genresJsonArray.get(i).toString());
             }
             movieModel.setGenres(genresList);
 

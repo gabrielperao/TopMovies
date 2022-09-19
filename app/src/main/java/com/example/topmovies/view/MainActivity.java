@@ -28,22 +28,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        if (!Util.hasInternetConnection(getApplicationContext())) {
-            displayNoConnectionMessage();
+        if (Util.hasNoConnection(getApplicationContext())) {
+            displayNoConnectionMessage(false);
             return;
         }
 
         setVisibility("progressBar", View.VISIBLE);
 
         AsyncLoadMoviesTask loadMoviesTask = new AsyncLoadMoviesTask();
-        loadMoviesTask.execute(MovieController.BASE_URL + "top_rated?api_key=" + MovieController.TOKEN);
+        loadMoviesTask.execute();
     }
 
     class AsyncLoadMoviesTask extends AsyncTask<String, String, String>{
         @Override
         protected String doInBackground(String... strings) {
-            String url = strings[0];
-            return MovieController.getResponse(url);
+            return MovieController.getResponse();
         }
 
         @Override
@@ -53,13 +52,13 @@ public class MainActivity extends AppCompatActivity {
             setVisibility("progressBar", View.INVISIBLE);
 
             if (response == null) {
-                displayNoConnectionMessage();
+                displayNoConnectionMessage(true);
                 return;
             }
 
             List<MovieModel> movies = MovieController.getTopRatedMovies(response);
             if (movies == null) {
-                displayNoConnectionMessage();
+                displayNoConnectionMessage(true);
                 Toast.makeText(getApplicationContext(), MovieController.REQUEST_FAIL_MSG, Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -75,8 +74,9 @@ public class MainActivity extends AppCompatActivity {
         int indexId = getResources().getIdentifier("moviePosterView" + movie.getIndexId(), "id", getPackageName());
         final ImageView imageView = findViewById(indexId);
 
+        imageView.setContentDescription(movie.getTitle());
         imageView.setVisibility(View.VISIBLE);
-        Picasso.get().load(MovieController.BASE_IMG_PATH + movie.getPosterPath()).into(imageView, new Callback() {
+        Picasso.get().load(movie.getPosterPath()).into(imageView, new Callback() {
             @Override
             public void onSuccess() {
                 // pass
@@ -100,17 +100,27 @@ public class MainActivity extends AppCompatActivity {
         indexId = getResources().getIdentifier("movieTitleView" + movie.getIndexId(), "id", getPackageName());
         TextView textView = findViewById(indexId);
         textView.setText(movie.getTitle());
+        textView.setContentDescription(movie.getTitle());
         textView.setVisibility(View.VISIBLE);
     }
 
-    public void displayNoConnectionMessage() {
+    public void displayNoConnectionMessage(boolean requestFail) {
         for (int i = 0 ; i < MovieController.N_MOVIES; i++) {
             removeView("moviePosterView" + i);
             removeView("movieTitleView" + i);
         }
 
+        if (requestFail) {
+            setTextForTextView("noConnectionTextView", MovieController.REQUEST_FAIL_MSG);
+        }
         setVisibility("noConnectionImageView", View.VISIBLE);
         setVisibility("noConnectionTextView", View.VISIBLE);
+    }
+
+    private void setTextForTextView(String idStr, String text) {
+        int viewId = getResources().getIdentifier(idStr, "id", getPackageName());
+        TextView textView = findViewById(viewId);
+        textView.setText(text);
     }
 
     private void removeView(String idStr) {

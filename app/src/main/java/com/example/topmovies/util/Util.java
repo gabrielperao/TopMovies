@@ -36,11 +36,11 @@ public final class Util {
         }
     }
 
-    public static boolean hasInternetConnection(Context context) {
+    public static boolean hasNoConnection(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         if (activeNetwork == null) return false;
         int type = activeNetwork.getType();
-        return (type == ConnectivityManager.TYPE_WIFI || type == ConnectivityManager.TYPE_MOBILE);
+        return (type != ConnectivityManager.TYPE_WIFI && type != ConnectivityManager.TYPE_MOBILE);
     }
 }

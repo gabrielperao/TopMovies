@@ -1,4 +1,24 @@
 <resources>
-    <string name="app_name">TopMovies</string>
-    <string name="title_activity_exemplo">exemplo</string>
+    <string name="app_name">TOP MOVIES</string>
+    <string name="overview_label">Overview</string>
+    <string name="release_year_label">Release Year</string>
+    <string name="genres_label">Genres</string>
+    <string name="languages_label">Languages</string>
+    <string name="runtime_label">Runtime</string>
+    <string name="no_connection_msg">You are not connected to the internet!</string>
+    <string name="desc_arrow_back">Back to previous window</string>
+    <string name="desc_movie_poster">Movie poster</string>
+    <string name="desc_movie_title">Movie title</string>
+    <string name="desc_vote_average">Vote average</string>
+    <string name="desc_vote_count">Vote count</string>
+    <string name="desc_overview_label">Overview</string>
+    <string name="desc_overview_content">Movie overview</string>
+    <string name="desc_release_year_label">Release year</string>
+    <string name="desc_release_year_content">Movie release year</string>
+    <string name="desc_runtime_label">Runtime</string>
+    <string name="desc_runtime_content">Movie runtime</string>
+    <string name="desc_genres_label">Genres</string>
+    <string name="desc_genres_content">Movie genres</string>
+    <string name="desc_languages_label">Languages</string>
+    <string name="desc_languages_content">Available languages</string>
 </resources>
