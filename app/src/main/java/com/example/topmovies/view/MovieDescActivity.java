@@ -36,7 +36,7 @@ public class MovieDescActivity extends AppCompatActivity {
             "movieRuntimeLabelView",
             "movieRuntimeContentView",
             "backArrowImageView",
-            "movieBannerView",
+            "moviePosterView",
             "starView"
     };
 
