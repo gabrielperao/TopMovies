@@ -2,7 +2,6 @@ package com.example.topmovies.view;
 
 import com.example.topmovies.api.MovieController;
 import com.example.topmovies.model.MovieModel;
-import com.example.topmovies.util.Util;
 import com.example.topmovies.R;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Callback;
@@ -15,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.content.Intent;
 import java.util.List;
 
@@ -26,11 +24,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        if (Util.hasNoConnection(getApplicationContext())) {
-            displayNoConnectionMessage(false);
-            return;
-        }
 
         setVisibility("progressBar", View.VISIBLE);
 
@@ -51,14 +44,13 @@ public class MainActivity extends AppCompatActivity {
             setVisibility("progressBar", View.INVISIBLE);
 
             if (jsonResponse == null) {
-                displayNoConnectionMessage(true);
+                displayNoConnectionMessage();
                 return;
             }
 
             List<MovieModel> movies = MovieController.getTopRatedMovies(jsonResponse);
             if (movies == null) {
-                displayNoConnectionMessage(true);
-                Toast.makeText(getApplicationContext(), MovieController.REQUEST_FAIL_MSG, Toast.LENGTH_SHORT).show();
+                displayNoConnectionMessage();
                 return;
             }
 
@@ -103,15 +95,12 @@ public class MainActivity extends AppCompatActivity {
         movieTitleView.setVisibility(View.VISIBLE);
     }
 
-    public void displayNoConnectionMessage(boolean requestFail) {
+    public void displayNoConnectionMessage() {
         for (int i = 0 ; i < MovieController.N_MOVIES; i++) {
             removeView("moviePosterView" + i);
             removeView("movieTitleView" + i);
         }
 
-        if (requestFail) {
-            setTextForTextView("noConnectionTextView", MovieController.REQUEST_FAIL_MSG);
-        }
         setVisibility("noConnectionImageView", View.VISIBLE);
         setVisibility("noConnectionTextView", View.VISIBLE);
     }

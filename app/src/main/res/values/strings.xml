@@ -5,7 +5,7 @@
     <string name="genres_label">Genres</string>
     <string name="languages_label">Languages</string>
     <string name="runtime_label">Runtime</string>
-    <string name="no_connection_msg">You are not connected to the internet!</string>
+    <string name="no_connection_msg">Something didn\'t work, check your wi-fi connection!"</string>
     <string name="desc_arrow_back">Back to previous window</string>
     <string name="desc_movie_poster">Movie poster</string>
     <string name="desc_movie_title">Movie title</string>

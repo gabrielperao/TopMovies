@@ -19,7 +19,6 @@ import java.util.List;
 public class MovieController {
 
     public static final int N_MOVIES = 20;
-    public static final String REQUEST_FAIL_MSG = "Something didn't work, check your wi-fi connection!";
     public static final String BASE_URL = "https://desafio-mobile.nyc3.digitaloceanspaces.com/movies-v2";
 
     public static String getResponse(String... strings) {

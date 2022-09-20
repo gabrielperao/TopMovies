@@ -1,9 +1,5 @@
 package com.example.topmovies.util;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -34,13 +30,5 @@ public final class Util {
         } catch (ParseException e) {
             return "-";
         }
-    }
-
-    public static boolean hasNoConnection(Context context) {
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        if (activeNetwork == null) return false;
-        int type = activeNetwork.getType();
-        return (type != ConnectivityManager.TYPE_WIFI && type != ConnectivityManager.TYPE_MOBILE);
     }
 }

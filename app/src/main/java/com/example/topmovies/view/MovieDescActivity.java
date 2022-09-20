@@ -2,7 +2,6 @@ package com.example.topmovies.view;
 
 import com.example.topmovies.api.MovieController;
 import com.example.topmovies.model.MovieModel;
-import com.example.topmovies.util.Util;
 import com.example.topmovies.R;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Callback;
@@ -54,11 +53,6 @@ public class MovieDescActivity extends AppCompatActivity {
             }
         });
 
-        if (Util.hasNoConnection(getApplicationContext())) {
-            displayNoConnectionMessage(false);
-            return;
-        }
-
         setVisibility("progressBar", View.VISIBLE);
 
         // Getting movie id passed as 'parameter' to the current activity
@@ -85,7 +79,7 @@ public class MovieDescActivity extends AppCompatActivity {
 
             MovieModel movie;
             if (jsonResponse == null || (movie = MovieController.getMovie(jsonResponse)) == null) {
-                displayNoConnectionMessage(true);
+                displayNoConnectionMessage();
                 return;
             }
 
@@ -93,7 +87,7 @@ public class MovieDescActivity extends AppCompatActivity {
         }
     }
 
-    private void displayNoConnectionMessage(boolean requestFail) {
+    private void displayNoConnectionMessage() {
 
         int id;
         for (String idStr : widgetIds) {
@@ -105,9 +99,6 @@ public class MovieDescActivity extends AppCompatActivity {
             ((ViewGroup) view.getParent()).removeView(view);
         }
 
-        if (requestFail) {
-            setTextForTextView("noConnectionView", MovieController.REQUEST_FAIL_MSG);
-        }
         setVisibility("noConnectionImageView", View.VISIBLE);
         setVisibility("noConnectionTextView", View.VISIBLE);
     }
