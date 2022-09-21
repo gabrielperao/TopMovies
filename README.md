@@ -1,6 +1,6 @@
 # TOP MOVIES
 
-This project was developed during an internship application for Tokenlab. It consists on a mobile app that consumes the TMDb API and displays information about the top 20 highest-rated movies.
+This project consists on a mobile app that consumes the TMDb API and displays information about the top 20 highest-rated movies.
 <br><br>
 🚀 To access the main code, go to [app/src/main/java/com/example/topmovies](https://www.github.com/gabrielperao/TopMovies/tree/main/app/src/main/java/com/example/topmovies)
 <br><br>
@@ -18,6 +18,3 @@ This project was developed during an internship application for Tokenlab. It con
 <br>
 🚫 This app also has exception treatments, and the user will be notified if the movies' data can't be downloaded (or in case of any other issue).<br>
 <img src="https://user-images.githubusercontent.com/68524831/191142521-50ef780f-1745-40d4-9f99-a17e53a6ff53.png" />
-
-
-### ☑️ My special thanks goes to the Tokenlab team for giving me this opportunity and encouraging me to deliver a quality focused digital solution. 
